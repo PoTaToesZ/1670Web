@@ -1,0 +1,20 @@
+﻿@model ICollection<FPTBookStore.Models.Category>
+
+<div class="container-fluid col-md-10 text-center ">
+    <h1>Category</h1>
+    <table class="table-borderless">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Name</td>
+                <td>@c.Description</td>
+            </tr>
+        }
+    </table>
+</div>

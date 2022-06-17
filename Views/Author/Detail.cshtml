@@ -1,0 +1,26 @@
+﻿@model FPTBookStore.Models.Author;
+
+<div class="container-fluid col-md-10 text-center justify-content-center">
+    <table class="table-borderless">
+        <tr>
+            <th colspan="2" >Author Detail</th>
+        </tr>
+        <tr>
+            <th>Author Name</th>
+            <td>@Model.FName @Model.LName</td>
+        </tr>
+        <tr>
+            <th>Books</th>
+        </tr>
+        @foreach (var b in Model.Books)
+       {
+           <tr>
+               <td>Title:
+                   <a asp-controller="Category" asp-action="Detail" asp-route-id="@books.">
+                       @Book
+                   </a>
+               </td>
+           </tr>
+       }
+    </table>
+</div>

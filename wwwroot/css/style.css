@@ -1,0 +1,21 @@
+﻿/*Author table center*/
+#tb1{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Author table padding*/
+#tb1 td, th{
+    padding: 15px;
+}
+
+/*Add New Author*/
+#at1 {
+    font-family: serif;
+    color:chocolate;
+}
+
+/**/
+#na1{
+    color:chocolate;
+}
