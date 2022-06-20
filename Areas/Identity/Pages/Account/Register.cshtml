@@ -32,6 +32,7 @@
                 <select class="form-group" asp-for="Input.UserRole" asp-items="@(Model.Roles)">
                     <option>Please choose a role</option>
                 </select>
+                <span asp-validation-for="Input.UserRole" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
