@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +24,7 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        public List<SelectListItem> Roles { get; set; }
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -34,8 +36,15 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            Roles = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text = "Admin", Value = "Admin" },
+                new SelectListItem() { Text = "Store Owner", Value = "StoreOwner" },
+                new SelectListItem() { Text = "Test", Value= "Test" },
+                new SelectListItem() { Text = "Customer", Value= "Customer" }
+            };
         }
-
+        
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -60,6 +69,11 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Role")]
+            public string UserRole { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -87,6 +101,8 @@ namespace FPTBookStore.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
+
+                    await _userManager.AddToRoleAsync(user, Input.UserRole);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

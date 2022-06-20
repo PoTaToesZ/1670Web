@@ -8,7 +8,7 @@ namespace FPTBookStore.Controllers
 {
     public class CategoryController : Controller
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
         public CategoryController(ApplicationDbContext context)
         {
             this.context = context;

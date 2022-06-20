@@ -1,26 +1,39 @@
 ﻿@model ICollection<FPTBookStore.Models.Author>
 
-<div class="container-fluid col-md-10 text-center justify-content-center" >
-    <h1>Authors</h1>
-    <h5 class="text-secondary">Total Authors: @ViewData["total"]</h5>
-    <br />
-    <table class="table-borderless" id="tb1">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-        </tr>
-       @foreach (var a in Model)
-       {
-           <tr>
-               <td>@a.Id</td>
-               <td>@a.FName @a.LName</td>
-               <td>
-                   <a class="btn-outline-info" asp-action="Detail" asp-route-id="@a.Id">Detail</a>
-                    <a class="btn-outline-warning" asp-action="Edit" asp-route-id="@a.Id">Edit</a>
-                    <a class="btn-outline-danger" asp-action="Delete" asp-route-id="@a.Id">Delete</a>
-               </td>
-           </tr>
-       }
-    </table>
-    <a class="btn-outline-success" asp-action="Create">Add New Author</a>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+            <h5 class="text-secondary">Total Authors: @ViewData["total"]</h5>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Name</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+                    {
+                        <th>Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+               {
+                   <tr class="text-center">
+                       <td class="align-middle">@a.Id</td>
+                       <td class="align-middle">@a.LName @a.FName</td>
+                       
+                            <td class="align-middle">
+                                <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@a.Id"><i class="bi bi-eye"></i>Detail</a>
+                                <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@a.Id"><i class="bi bi-pencil-square"></i>Edit</a>
+                                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@a.Id"><i class="bi bi-trash"></i>Delete</a>
+                            </td>
+                       
+                    </tr>
+               }   
+            </tbody>
+        </table>     
+        <div style="text-align:center">
+             <a class="btn btn-outline-success" style="text-align:center" asp-action="Create">Add New Author</a>
+        </div>
+    </div>
 </div>
+

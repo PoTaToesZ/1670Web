@@ -10,7 +10,7 @@ namespace FPTBookStore.Controllers
 {
     public class AuthorController : Controller
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public AuthorController(ApplicationDbContext context)
         {

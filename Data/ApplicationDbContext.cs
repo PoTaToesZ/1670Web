@@ -1,4 +1,5 @@
 ﻿using FPTBookStore.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,7 +25,18 @@ namespace FPTBookStore.Data
             SeedCategory(modelBuilder);
             SeedAuthor(modelBuilder);
             SeedBook(modelBuilder);
+            /*
+            SeedRole(modelBuilder);
+            */
         }
+        /*
+        private void SeedRole(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole { Id = "3", Name = "Test", NormalizedName = "TEST" }
+            );
+        }
+        */
         private void SeedCategory(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
