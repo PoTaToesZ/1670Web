@@ -1,5 +1,59 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model FPTBookStore.Models.Book;
+
+<div class="container col-md-4 text-center ">
+    <h1 id="at1">Change Book Info</h1>
+    <br />
+     <form class="card p-2 bg-white" action="Edit" method="post">
+         <input type="hidden" asp-for="Id"/>
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" asp-for="Title" />
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input class="form-control" asp-for="Description" />
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            <input class="form-control" asp-for="Image" />
+            <span class="text-danger" asp-validation-for="Image"></span>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input class="form-control" asp-for="Price" />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <label>PublishedDate</label>
+            <input class="form-control" asp-for="PublishedDate" />
+            <span class="text-danger" asp-validation-for="PublishedDate"></span>
+        </div>
+        <div class="form-group">
+            <label>Author Name</label>
+            <select class="form-control" asp-for="AuthorId">
+            <option>Choose Author Name</option>
+                @foreach (var au in @ViewBag.Authors)
+               {
+                   <option value="@au.Id">@au.LName @au.FName</option>
+               }
+            </select>
+            <span class="text-danger" asp-validation-for="AuthorId"></span>
+        </div>
+        <div class="form-group">
+            <label>Category Type</label>
+            <select class="form-control" asp-for="CategoryId">
+            <option>Choose Category Type</option>
+                @foreach (var ca in @ViewBag.Categories)
+               {
+                   <option value="@ca.Id">@ca.Name</option>
+               }
+            </select>
+            <span class="text-danger" asp-validation-for="CategoryId"></span>
+        </div>
+        <div class="form-group">
+            <input class="btn-outline-success" type="submit" value="Edit" />
+        </div>
+     </form>
+</div>

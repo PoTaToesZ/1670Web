@@ -1,5 +1,39 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ICollection<FPTBookStore.Models.Book>
+
+<div class="container-fluid col-md-10 text-center justify-content-center" >
+    <h1>Books</h1>
+    <h5 class="text-secondary">Total Authors: @ViewData["total"]</h5>
+    <br />
+<table class="table-borderless">
+    <tr>
+        <th>Id</th>
+        <th>Author Id</th>
+        <th>Category Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Published Date</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>        
+    @foreach (var b in Model)
+   {
+       <tr>
+           <td>@b.Id</td>
+           <td>@b.AuthorId</td>
+           <td>@b.CategoryId</td>
+           <td>@b.Title</td>
+           <td>@b.Description</td>
+           <td>
+                <img src="@Url.Content(b.Image)" alt="@b.Title" width="100" height="100" />
+           </td>
+           <td>@b.PublishedDate</td>
+           <td>>@b.Price</td>
+           <td>
+               <a class="btn-outline-info" asp-action="Detail" asp-route-id="@b.Id">Detail</a>
+               <a class="btn-outline-warning" asp-action="Edit" asp-route-id="@b.Id">Edit</a>
+               <a class="btn-outline-danger" asp-action="Delete" asp-route-id="@b.Id">Delete</a>
+           </td>
+       </tr>
+   }
+</table>

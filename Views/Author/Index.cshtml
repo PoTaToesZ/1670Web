@@ -1,7 +1,5 @@
 ﻿@model ICollection<FPTBookStore.Models.Author>
 
-
-
 <div class="container-fluid col-md-10 text-center justify-content-center" >
     <h1>Authors</h1>
     <h5 class="text-secondary">Total Authors: @ViewData["total"]</h5>
@@ -11,20 +9,18 @@
             <th>Id</th>
             <th>Name</th>
         </tr>
-        @if(Model == null)
-        {
-            <tr>
-                <td>No data</td>
-            </tr>
-        }else{
-        @foreach (var a in Model)
+       @foreach (var a in Model)
        {
            <tr>
                <td>@a.Id</td>
                <td>@a.FName @a.LName</td>
+               <td>
+                   <a class="btn-outline-info" asp-action="Detail" asp-route-id="@a.Id">Detail</a>
+                    <a class="btn-outline-warning" asp-action="Edit" asp-route-id="@a.Id">Edit</a>
+                    <a class="btn-outline-danger" asp-action="Delete" asp-route-id="@a.Id">Delete</a>
+               </td>
            </tr>
        }
-        }
     </table>
-    <a class="btn-outline-warning" asp-action="Create">Add New Author</a>
+    <a class="btn-outline-success" asp-action="Create">Add New Author</a>
 </div>

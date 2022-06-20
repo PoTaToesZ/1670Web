@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model FPTBookStore.Models.Book
+
+<div class="container-fluid col-md-10 text-center justify-content-center">
+    <table class="table-borderless">
+        <tr>
+            <th colspan="2">Details</th>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>@Model.Title</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>@Model.Image</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>@Model.Price</td>
+        </tr>
+        <tr>
+            <th>Published Date</th>
+            <td>@Model.PublishedDate</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>
+                <a asp-controller="Author" asp-action="Detail" asp-route-id="@Model.AuthorId">
+                    @Model.Author.LName @Model.Author.FName
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>
+                <a asp-controller="Category" asp-action="Detail" asp-route-id="@Model.CategoryId">
+                    @Model.Category.Name
+                </a>
+            </td>
+        </tr>        
+    </table>
+</div>

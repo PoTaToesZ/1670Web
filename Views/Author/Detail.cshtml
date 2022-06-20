@@ -6,7 +6,7 @@
             <th colspan="2" >Author Detail</th>
         </tr>
         <tr>
-            <th>Author Name</th>
+            <th>Name</th>
             <td>@Model.FName @Model.LName</td>
         </tr>
         <tr>
@@ -16,8 +16,8 @@
        {
            <tr>
                <td>Title:
-                   <a asp-controller="Category" asp-action="Detail" asp-route-id="">
-                      
+                   <a asp-controller="Category" asp-action="Detail" asp-route-id="@b.AuthorId">
+                      @b.Title
                    </a>
                </td>
            </tr>
