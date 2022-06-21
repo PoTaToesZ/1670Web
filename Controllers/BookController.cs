@@ -1,7 +1,10 @@
 ﻿using FPTBookStore.Data;
 using FPTBookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,17 +23,17 @@ namespace FPTBookStore.Controllers
             return View(await context.Book.ToListAsync());
         }
 
-        public IActionResult Detail(int? id)
+        public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var book = context.Book
-                .Include(b => b.Author)
-                .Include(b => b.Category)
+                .Include(s => s.Author)
+                .Include(s => s.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            return View(book);
+            return View(await book);
         }
 
         public IActionResult Delete(int? id)
@@ -92,6 +95,17 @@ namespace FPTBookStore.Controllers
                 return RedirectToAction("Index");
             }
             return View(book);
+        }
+        //search function
+        public IActionResult Search(string searchString)
+        {
+            var books = from m in context.Book
+                        select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Title.Contains(searchString));
+            }
+            return View(books);
         }
     }
 }

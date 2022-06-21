@@ -23,19 +23,26 @@
                        <td class="align-middle">@c.Id</td>
                        <td class="align-middle">@c.Name</td>
                        <td class="align-middle">@c.Description</td>
-                       <td class="align-middle">@c.Image</td>
+                       <td class="align-middle">
+                           <img src="@c.Image" width="150" height="100">
+                       </td>
+                       @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+                        {
                             <td class="align-middle">
                                 <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@c.Id"><i class="bi bi-eye"></i>Detail</a>
                                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@c.Id"><i class="bi bi-pencil-square"></i>Edit</a>
                                 <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@c.Id"><i class="bi bi-trash"></i>Delete</a>
                             </td>
-                       
+                         }
                     </tr>
                }   
             </tbody>
-        </table>     
+        </table>   
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
         <div style="text-align:center">
              <a class="btn btn-outline-success" style="text-align:center" asp-action="Create">Add New Category</a>
         </div>
+        }
     </div>
 </div>

@@ -1,49 +1,64 @@
 ﻿@model ICollection<FPTBookStore.Models.Book>
 
+@{
+    ViewData["Title"] = "List of Books";
+}
+
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-            <h5 class="text-secondary">Total Books: @ViewData["total"]</h5>
-        <table class="table">
-            <thead>
-                <tr class="text-center">
-                    <th>Id</th>
-                    <th>AuthorId</th>
-                    <th>CategoryId</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Published Date</th>
-                    <th>Price</th>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
-                    {
-                        <th>Actions</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var b in Model)
-               {
-                   <tr class="text-center">
-                       <td class="align-middle">@b.Id</td>
-                       <td class="align-middle">@b.AuthorId</td>
-                       <td class="align-middle">@b.CategoryId</td>
-                       <td class="align-middle">@b.Title</td>
-                       <td class="align-middle">@b.Description</td>
-                       <td class="align-middle">@b.Image</td>
-                       <td class="align-middle">@b.PublishedDate</td>
-                       <td class="align-middle">@b.Price</td>
-                            <td class="align-middle">
-                                <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@b.Id"><i class="bi bi-eye"></i>Detail</a>
-                                <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@b.Id"><i class="bi bi-pencil-square"></i>Edit</a>
-                                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@b.Id"><i class="bi bi-trash"></i>Delete</a>
-                            </td>
-                       
-                    </tr>
-               }   
-            </tbody>
-        </table>     
-        <div style="text-align:center">
-             <a class="btn btn-outline-success" style="text-align:center" asp-action="Create">Add New Book</a>
+    @foreach (var b in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @b.Title
+                                    @if(User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+                                    {
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@b.Id"><i class="bi bi-pencil-square"></i></a>
+                                    }
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@b.Image" width="100%" alt="@b.Title">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@b.Description</p>
+                            <p class="card-text">Published Date: @b.PublishedDate</p>
+                            <p class="card-text">Price: @b.Price</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-info float-right" asp-action="Detail" asp-route-id="@b.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                                @if(User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                                    {
+                                <a class="btn btn-success text-white" 
+                                   asp-controller="Orders" 
+                                   asp-action="AddItemToShoppingCart" 
+                                   asp-route-id="@b.Id">
+                                <i class="bi bi-cart-plus"></i> Add to Cart (Price @b.Price.ToString("c"))</a>
+                                    }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </div>
+
+@if(User.Identity.IsAuthenticated && User.IsInRole("StoreOwner")){
+    <div style="text-align:center">
+        <a class="btn btn-outline-success" style="text-align:center" asp-action="Create">Add New Book</a>
+    </div>
+}
+

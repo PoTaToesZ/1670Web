@@ -11,7 +11,7 @@ namespace FPTBookStore.Models
 
         [Required]
         [Display(Name = "Title")]
-        [StringLength(15, ErrorMessage = "Title must between 6 to 15 characters ", MinimumLength = 6)]
+        [StringLength(50, ErrorMessage = "Title must between 6 to 50 characters ", MinimumLength = 6)]
         public string Title { get; set; }
 
         [Required]

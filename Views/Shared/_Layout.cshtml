@@ -21,22 +21,24 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                       <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Help">Help</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Book</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="na1" class="nav-link" asp-area="" asp-controller="Author" asp-action="Index">Author</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                        </li>
+                       <li class="navbar-nav flex-grow-1">
+                           <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index"><i class="bi bi-book"></i> Books</a>
+                       </li>
+                       <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-info-lg"></i> Info
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" asp-controller="Category" asp-action="Index"><i class="bi bi-tags"></i> Categories</a>
+                                  <a class="dropdown-item" asp-controller="Author" asp-action="Index"><i class="bi bi-person-square"></i> Authors</a>
+                            </div>
+                       </li>
                     </ul>
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Book" asp-action="Search" style="padding-right: 25px;">
+                        <input name="searchString" type="text" class="form-control" placeholder="Search for a book..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ><i class="bi bi-search"></i></button>
+                    </form>
                 </div>
             </div>
         </nav>

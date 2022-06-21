@@ -20,20 +20,24 @@
                    <tr class="text-center">
                        <td class="align-middle">@a.Id</td>
                        <td class="align-middle">@a.LName @a.FName</td>
-                       
+                       @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+                       {
                             <td class="align-middle">
                                 <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@a.Id"><i class="bi bi-eye"></i>Detail</a>
                                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@a.Id"><i class="bi bi-pencil-square"></i>Edit</a>
                                 <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@a.Id"><i class="bi bi-trash"></i>Delete</a>
                             </td>
-                       
+                       }
                     </tr>
                }   
             </tbody>
         </table>     
-        <div style="text-align:center">
-             <a class="btn btn-outline-success" style="text-align:center" asp-action="Create">Add New Author</a>
-        </div>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+        {
+            <div style="text-align:center">
+                <a class="btn btn-outline-success" style="text-align:center" asp-action="Create">Add New Author</a>
+            </div>
+        }
     </div>
 </div>
 

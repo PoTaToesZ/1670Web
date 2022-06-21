@@ -70,6 +70,7 @@ namespace FPTBookStore.Controllers
             }
             return View(category);
         }
+        [HttpPost]
         public IActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
