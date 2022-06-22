@@ -107,5 +107,8 @@ namespace FPTBookStore.Controllers
             }
             return View(books);
         }
+
+        //Get book by id
+        
     }
 }

@@ -42,7 +42,7 @@
                                 @if(User.Identity.IsAuthenticated && User.IsInRole("Customer"))
                                     {
                                 <a class="btn btn-success text-white" 
-                                   asp-controller="Orders" 
+                                   asp-controller="Order" 
                                    asp-action="AddItemToShoppingCart" 
                                    asp-route-id="@b.Id">
                                 <i class="bi bi-cart-plus"></i> Add to Cart (Price @b.Price.ToString("c"))</a>

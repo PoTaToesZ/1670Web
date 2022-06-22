@@ -18,6 +18,9 @@ namespace FPTBookStore.Data
         public DbSet<Book> Book { get; set; }
         public DbSet<Author> Author { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItem { get; set; }
 
         protected void onModelCreating(ModelBuilder modelBuilder)
         {
