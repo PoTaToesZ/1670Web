@@ -25,7 +25,7 @@
                         <td class="align-middle">@item.Book.Price.ToString("c")</td>
                         <td class="align-middle">@((item.Amount*item.Book.Price).ToString("c"))</td>
                         <td class="align-middle">
-                            <a class="text-danger" asp-controller="Order" asp-action="RemoveItemFromShoppingCart"
+                            <a class="text-danger" asp-controller="Order" asp-action="RemoveItemFromCart"
                                asp-route-id="@item.Book.Id">
                                 <i class="bi bi-cart-dash"></i>
                             </a>
@@ -57,7 +57,7 @@
                     </a>*@
                 <div id="paypal-btn"></div>
                 <span style="padding:5px"></span>
-                <a class="btn btn-outline-success" asp-controller="Movies" asp-action="Index">
+                <a class="btn btn-outline-success" asp-controller="Book" asp-action="Index">
                     Add more items
                 </a>
             </div>

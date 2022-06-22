@@ -96,19 +96,19 @@ namespace FPTBookStore.Controllers
             }
             return View(book);
         }
-        //search function
-        public IActionResult Search(string searchString)
+
+        //search book
+        public async Task<IActionResult> Filter(string searchString)
         {
-            var books = from m in context.Book
-                        select m;
+            var allBooks = await context.Book.ToListAsync();
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                books = books.Where(s => s.Title.Contains(searchString));
+                var filteredResult = allBooks.Where(s => s.Title.Contains(searchString)).ToList();
+                return View("Index", filteredResult);
             }
-            return View(books);
-        }
+            return View("Index", allBooks);
 
-        //Get book by id
-        
+        }
     }
 }

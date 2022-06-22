@@ -44,5 +44,20 @@ namespace FPTBookStore.Controllers
             shoppingcart.AddItemToCart(book);
             return RedirectToAction("ShoppingCart");
         }
+        //Remove item from cart
+        public async Task<IActionResult> RemoveItemFromCart(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var book = await context.Book.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            shoppingcart.RemoveItemFromCart(book);
+            return RedirectToAction("ShoppingCart");
+        }
     }
 }
