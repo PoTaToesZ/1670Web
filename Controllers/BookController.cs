@@ -81,10 +81,11 @@ namespace FPTBookStore.Controllers
             }
             var authors = context.Author.ToList();
             var categories = context.Category.ToList();
-            ViewBag.Authors = authors;
-            ViewBag.Categories = categories;
+            ViewBag.Author = authors;
+            ViewBag.Category = categories;
             return View(book);
         }
+
         [HttpPost]
         public IActionResult Edit(Book book)
         {
@@ -96,7 +97,7 @@ namespace FPTBookStore.Controllers
             }
             return View(book);
         }
-
+        
         //search book
         public async Task<IActionResult> Filter(string searchString)
         {

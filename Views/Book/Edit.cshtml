@@ -1,4 +1,4 @@
-﻿@model Book;
+﻿@model FPTBookStore.Models.Book;
 
 <div class="container col-md-4 text-center ">
     <h1 id="at1">Change Book Info</h1>
@@ -34,10 +34,10 @@
             <label>Author Name</label>
             <select class="form-control" asp-for="AuthorId">
             <option>Choose Author Name</option>
-                @foreach (var au in @ViewBag.Authors)
-               {
-                   <option value="@au.Id">@au.LName @au.FName</option>
-               }
+                @foreach (var au in @ViewBag.Author)
+                {
+                    <option value="@au.Id">@au.LName @au.FName</option>
+                }
             </select>
             <span class="text-danger" asp-validation-for="AuthorId"></span>
         </div>
@@ -45,7 +45,7 @@
             <label>Category Type</label>
             <select class="form-control" asp-for="CategoryId">
             <option>Choose Category Type</option>
-                @foreach (var ca in @ViewBag.Categories)
+                @foreach (var ca in @ViewBag.Category)
                {
                    <option value="@ca.Id">@ca.Name</option>
                }
