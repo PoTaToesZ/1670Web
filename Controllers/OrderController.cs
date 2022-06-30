@@ -15,9 +15,10 @@ namespace FPTBookStore.Controllers
             this.context = context;
             this.shoppingcart = shoppingcart;
         }
-
+        
         public IActionResult ShoppingCart()
         {
+
             var items = shoppingcart.GetShoppingCartItems();
             shoppingcart.ShoppingCartItems = items;
 
@@ -25,7 +26,7 @@ namespace FPTBookStore.Controllers
             {
                 ShoppingCart = shoppingcart,
                 ShoppingCartTotal = shoppingcart.GetShoppingCartTotal()
-            };
+            };      
             return View(response);
         }
 
@@ -59,5 +60,6 @@ namespace FPTBookStore.Controllers
             shoppingcart.RemoveItemFromCart(book);
             return RedirectToAction("ShoppingCart");
         }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿@model FPTBookStore.Models.ShoppingCartVM;
+﻿    @model FPTBookStore.Models.ShoppingCartVM;
 
 <div class="row">
     <div class="col-md-8 offset-2">
@@ -49,12 +49,8 @@
                 </tr>
             </tfoot>
         </table>
-
         <div class="text-right">
             <div class="btn-group">
-                @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
-                        Complete order
-                    </a>*@
                 <div id="paypal-btn"></div>
                 <span style="padding:5px"></span>
                 <a class="btn btn-outline-success" asp-controller="Book" asp-action="Index">

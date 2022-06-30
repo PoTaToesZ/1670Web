@@ -18,7 +18,8 @@ namespace FPTBookStore.Controllers
             this.context = context;
         }
         public async Task<IActionResult> Index()
-        {
+        { 
+            
             ViewData["Total"] = await context.Book.CountAsync();
             return View(await context.Book.ToListAsync());
         }
